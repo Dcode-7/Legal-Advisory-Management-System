@@ -1,1 +1,1 @@
-Legal Advisory Management Systen
+Legal Advisory Management System
