@@ -170,18 +170,6 @@
                   >Lawyer</label
                 >
               </div>
-              <div class="form-check form-check-inline col-3">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="inlineRadioOptions"
-                  id="inlineRadio2"
-                  value="option2"
-                />
-                <label class="form-check-label" for="inlineRadio2"
-                  >Administrator</label
-                >
-              </div>
               <div class="mx-2 text-center">
                 <br />
                 <button type="submit" class="btn btn-primary mb-2">
@@ -194,8 +182,94 @@
       </div>
     </div>
 
-    <!--Signup Modal -->
+    <!-- new sign up modal -->
     <div
+      class="modal fade"
+      id="signupModalCenter"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="signupModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Sign up</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label"
+                  >Email</label
+                >
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    class="form-control-plaintext"
+                    id="staticEmail"
+                    value="email@example.com"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label"
+                  >Password</label
+                >
+                <div class="col-sm-10">
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="inputPassword"
+                    placeholder="Password"
+                  />
+                </div>
+              </div>
+              <div class="form-check form-check-inline col-3">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio1"
+                  value="option1"
+                />
+                <label class="form-check-label" for="inlineRadio1"
+                  >Client</label
+                >
+              </div>
+              <div class="form-check form-check-inline col-3">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio2"
+                  value="option2"
+                />
+                <label class="form-check-label" for="inlineRadio2"
+                  >Lawyer</label
+                >
+              </div>
+              <div class="mx-2 text-center">
+                <br />
+                <button type="submit" class="btn btn-primary mb-2">
+                  Sign up
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Signup Modal -->
+    <!-- <div
       class="modal fade"
       id="signupModalCenter"
       tabindex="-1"
@@ -280,7 +354,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <div
       id="carouselExampleIndicators"
       class="carousel slide"
