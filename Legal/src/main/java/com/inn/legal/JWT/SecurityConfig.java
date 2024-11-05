@@ -1,5 +1,6 @@
 package com.inn.legal.JWT;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,15 +30,15 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowCredentials(true);//Enables credentials, headers, and methods.
-        configuration.addAllowedOrigin("*"); //Allows requests from any origin
-        configuration.addAllowedHeader("*");
-        configuration.addAllowedMethod("*");
+        configuration.setAllowCredentials(true);
+        configuration.addAllowedOrigin("http://127.0.0.1:5500/"); // Replace '*' with specific origin for security
+        configuration.addAllowedHeader("*"); // You may specify individual headers like "Content-Type"
+        configuration.addAllowedMethod("*"); // Allowed HTTP methods like GET, POST, etc.
+        configuration.addExposedHeader("Authorization"); // Include this if you need to expose any headers
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration); //Registers the CORS configuration to apply to all endpoints.
+        source.registerCorsConfiguration("/**", configuration);
         return source;
     }
-
 
     @Bean
     public PasswordEncoder passwordEncoder() { //to encode passwords securely.
