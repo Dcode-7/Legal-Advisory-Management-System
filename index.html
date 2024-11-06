@@ -53,11 +53,11 @@
               aria-haspopup="true"
               aria-expanded="false"
             >
-              Dropdown
+              Menu
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="dashboard.html">Dashboard</a>
+              <a class="dropdown-item" href="form.html">Fill details</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
@@ -97,134 +97,176 @@
     </nav>
 
     <!--Login Modal -->
-    <div class="modal fade" id="loginModalCenter" tabindex="-1" role="dialog" aria-labelledby="loginModalCenterTitle" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="loginModalCenter"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="loginModalCenterTitle"
+      aria-hidden="true"
+    >
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="loginModalCenterTitle">Login</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Login</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <form id="loginForm">
+            <form>
               <div class="form-group row">
-                <label for="loginEmail" class="col-sm-2 col-form-label">Email</label>
+                <label for="staticEmail" class="col-sm-2 col-form-label"
+                  >Email</label
+                >
                 <div class="col-sm-10">
-                  <input type="email" class="form-control" id="loginEmail" name="email" placeholder="example@gmail.com" autocomplete="email" required />
+                  <input
+                    type="text"
+                    class="form-control-plaintext"
+                    id="staticEmail"
+                    value="email@example.com"
+                  />
                 </div>
               </div>
               <div class="form-group row">
-                <label for="loginPassword" class="col-sm-2 col-form-label">Password</label>
+                <label for="inputPassword" class="col-sm-2 col-form-label"
+                  >Password</label
+                >
                 <div class="col-sm-10">
-                  <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password" autocomplete="current-password" required />
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="inputPassword"
+                    placeholder="Password"
+                  />
                 </div>
               </div>
               <div class="form-check form-check-inline col-3">
-                <input class="form-check-input" type="radio" name="role" id="loginClientRole" value="CLIENT" required />
-                <label class="form-check-label" for="loginClientRole">Client</label>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio1"
+                  value="option1"
+                />
+                <label class="form-check-label" for="inlineRadio1"
+                  >Client</label
+                >
               </div>
               <div class="form-check form-check-inline col-3">
-                <input class="form-check-input" type="radio" name="role" id="loginLawyerRole" value="LAWYER" required />
-                <label class="form-check-label" for="loginLawyerRole">Lawyer</label>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio2"
+                  value="option2"
+                />
+                <label class="form-check-label" for="inlineRadio2"
+                  >Lawyer</label
+                >
               </div>
               <div class="mx-2 text-center">
                 <br />
-                <button type="submit" class="btn btn-primary mb-2">Login</button>
+                <button type="submit" class="btn btn-primary mb-2">
+                  Login
+                </button>
               </div>
-              <div id="loginResponse" class="text-center mt-2"></div>
             </form>
           </div>
         </div>
       </div>
-    </div>    
+    </div>
 
     <!-- new sign up modal -->
     <div
-  class="modal fade"
-  id="signupModalCenter"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="signupModalCenterTitle"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Sign up</h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="signupForm">
-          <div class="form-group row">
-            <label for="email" class="col-sm-2 col-form-label">Email</label>
-            <div class="col-sm-10">
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                name="email"
-                autocomplete="email"
-                placeholder="example@gmail.com"
-                required
-              />
-            </div>
+      class="modal fade"
+      id="signupModalCenter"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="signupModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Sign up</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-          <div class="form-group row">
-            <label for="password" class="col-sm-2 col-form-label">Password</label>
-            <div class="col-sm-10">
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                name="password"
-                autocomplete="new-password"
-                placeholder="Password"
-                required
-              />
-            </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label"
+                  >Email</label
+                >
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    class="form-control-plaintext"
+                    id="staticEmail"
+                    value="email@example.com"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label"
+                  >Password</label
+                >
+                <div class="col-sm-10">
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="inputPassword"
+                    placeholder="Password"
+                  />
+                </div>
+              </div>
+              <div class="form-check form-check-inline col-3">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio1"
+                  value="option1"
+                />
+                <label class="form-check-label" for="inlineRadio1"
+                  >Client</label
+                >
+              </div>
+              <div class="form-check form-check-inline col-3">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio2"
+                  value="option2"
+                />
+                <label class="form-check-label" for="inlineRadio2"
+                  >Lawyer</label
+                >
+              </div>
+              <div class="mx-2 text-center">
+                <br />
+                <button type="submit" class="btn btn-primary mb-2">
+                  Sign up
+                </button>
+              </div>
+            </form>
           </div>
-          <div class="form-check form-check-inline col-3">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="role"
-              id="clientRole"
-              value="CLIENT"
-              required
-            />
-            <label class="form-check-label" for="clientRole">Client</label>
-          </div>
-          <div class="form-check form-check-inline col-3">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="role"
-              id="lawyerRole"
-              value="LAWYER"
-              required
-            />
-            <label class="form-check-label" for="lawyerRole">Lawyer</label>
-          </div>
-          <div class="mx-2 text-center">
-            <br />
-            <button type="submit" class="btn btn-primary mb-2">Sign up</button>
-          </div>
-          <div id="signupResponse" class="text-center mt-2"></div>
-        </form>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-
-
 
     <!--Signup Modal -->
     <!-- <div
@@ -386,7 +428,5 @@
       integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
       crossorigin="anonymous"
     ></script>
-    <script src="script.js"></script>
-    <script src="login.js"></script>
   </body>
 </html>
