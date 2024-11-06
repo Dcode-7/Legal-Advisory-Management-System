@@ -25,12 +25,21 @@ loginForm.addEventListener("submit", async (event) => {
     });
 
     // Parse the response
-    const responseText = await response.text();
+    const responseData = await response.json(); // Assuming the response is in JSON format
 
     // Handle the response based on the status code
     if (response.ok) {
+      // Store the Bearer token in sessionStorage
+      const token = responseData.token; // Assuming the token is returned as 'token' in the response
+      sessionStorage.setItem("authToken", token); // Save the token in sessionStorage
+
+      // Display success message
       displayMessage("Login successful!", "success", "loginResponse");
+
+      // Redirect to the details form page
+      window.location.href = "form.html"; // Redirect to the form page after successful login
     } else {
+      // If the login fails, display an error message
       displayMessage("Invalid credentials or user role.", "error", "loginResponse");
     }
   } catch (error) {
