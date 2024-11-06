@@ -36,6 +36,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
             if(authorizationHeader!=null && authorizationHeader.startsWith("Bearer")){ //If the request is for a protected endpoint,
                 token=authorizationHeader.substring(7);//it extracts the token by removing the "Bearer " prefix.
+                logger.info("Extracted Token: " + token);
                 userName=jwtUtil.extractUsername(token);
                 claims = jwtUtil.extractAllClaims(token);
             }

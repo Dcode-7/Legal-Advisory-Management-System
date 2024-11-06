@@ -1,10 +1,11 @@
 package com.inn.legal.serviceImpl;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
 import com.inn.legal.JWT.ClientUserDetailsService;
 import com.inn.legal.JWT.JwtUtil;
+import com.inn.legal.POJO.Client;
 import com.inn.legal.POJO.User;
 import com.inn.legal.constants.LegalConstants;
+import com.inn.legal.dao.ClientDao;
 import com.inn.legal.dao.UserDao;
 import com.inn.legal.service.UserService;
 import com.inn.legal.utils.LegalUtils;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -25,6 +27,9 @@ import java.util.Objects;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserDao userDao;
+
+    @Autowired
+    ClientDao clientDao;
 
     @Autowired
     AuthenticationManager authenticationManager;
@@ -49,7 +54,17 @@ public class UserServiceImpl implements UserService {
                 // Call the method with both email and role
                 User user = userDao.findByEmailIdAndRole(email, role); //checks if a user already exists
                 if(Objects.isNull(user)){
-                    userDao.save(getUserFromMap(requestMap));
+                    user=getUserFromMap(requestMap);
+                    if (role == User.Role.CLIENT) {
+                        Client client = new Client();
+                        client.setEmail(email);  // Set the email for Client
+                        // Other fields like name, contactNo, etc., will be null during signup
+                        client = clientDao.save(client);  // Save the new Client and generate ClientID
+                        user.setClient(client);
+                        userDao.save(user);
+                    }else {
+                        userDao.save(user); //responsible for persisting (inserting or updating) the User entity.
+                    }
                     return  LegalUtils.getResponseEntity("Successfully Registered !",HttpStatus.OK);
                 }else{
                     return LegalUtils.getResponseEntity("Email already exists.",HttpStatus.BAD_REQUEST);
@@ -88,13 +103,11 @@ public class UserServiceImpl implements UserService {
             ); //to authenticate the user with the provided email and password.
             log.info("Authentication successful for user: {}", requestMap.get("email"));
             if (auth.isAuthenticated()) {
-                if(clientUserDetailsService.getUserDetail().getStatus().equalsIgnoreCase("true")){ //Checks if the user’s status is active (approved).
-                   return new ResponseEntity<String>("{\"token\":\""+jwtUtil.generateToken(clientUserDetailsService.getUserDetail()
-                                   .getEmail(),
-                           String.valueOf(clientUserDetailsService.getUserDetail().getRole()))+"\"}",HttpStatus.OK); //generates a JWT token
-               }else {
-                    return new ResponseEntity<>("{\"message\":\"Wait for Admin Approval\"}", HttpStatus.BAD_REQUEST); //admin approval is needed.
-                }
+                String token = jwtUtil.generateToken(
+                        clientUserDetailsService.getUserDetail().getEmail(),
+                        String.valueOf(clientUserDetailsService.getUserDetail().getRole())
+                );
+                return new ResponseEntity<String>("{\"token\":\""+token+"\"}",HttpStatus.OK); //generates a JWT token
             }else {
                 log.warn("Authentication failed for user: {}", requestMap.get("email")); //If authentication fails
             }
@@ -103,6 +116,39 @@ public class UserServiceImpl implements UserService {
         }
         return new ResponseEntity<>("{\"message\":\"Bad Credentials\"}", HttpStatus.BAD_REQUEST);
     }
+
+    @Override
+    public ResponseEntity<String> updateClientProfile(Map<String, String> requestMap, String token) {
+        log.info("Inside updateClientProfile for email: {}", token);
+
+        // Extract email from token and find user
+        String email = jwtUtil.extractUsername(token); // Extract email from JWT token
+        User user = userDao.findByEmailIdAndRole(email, User.Role.CLIENT);  // Find user with CLIENT role
+
+        if (user != null && user.getClient() != null) {
+            // Now you have the associated client, let's update the client profile
+            Client client = user.getClient();
+
+            if (requestMap.containsKey("name")) {
+                client.setName(requestMap.get("name"));
+            }
+            if (requestMap.containsKey("contactNo")) {
+                client.setContactNo(requestMap.get("contactNo"));
+            }
+            if (requestMap.containsKey("occupation")) {
+                client.setOccupation(requestMap.get("occupation"));
+            }
+            if (requestMap.containsKey("address")) {
+                client.setAddress(requestMap.get("address"));
+            }
+
+            clientDao.save(client);  // Save the updated client details
+            return LegalUtils.getResponseEntity("Client profile updated successfully", HttpStatus.OK);
+        } else {
+            return LegalUtils.getResponseEntity("Client not found", HttpStatus.NOT_FOUND);
+        }
+    }
+
 
 
 

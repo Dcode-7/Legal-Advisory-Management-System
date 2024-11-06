@@ -1,9 +1,7 @@
 package com.inn.legal.rest;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -15,5 +13,10 @@ public interface UserRest {
 
     @PostMapping(path="/login")
     public ResponseEntity<String>  login(@RequestBody(required = true)Map<String, String> requestMap);
+
+    // Client update profile endpoint (added)
+    @PutMapping(path="/update-profile")
+    public ResponseEntity<String> updateClientProfile(@RequestBody(required = true) Map<String, String> requestMap,
+                                                      @RequestHeader("Authorization") String token);
 
 }

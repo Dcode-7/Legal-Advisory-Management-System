@@ -7,12 +7,14 @@ import com.inn.legal.utils.LegalUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
 @RestController
+@CrossOrigin(origins="*",allowedHeaders = "*")
 public class UserRestImpl implements UserRest {
 
     @Autowired
@@ -35,4 +37,16 @@ public class UserRestImpl implements UserRest {
         }
         return LegalUtils.getResponseEntity(LegalConstants.SOMETHING_WENT_WRONG,HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @Override
+    public ResponseEntity<String> updateClientProfile(Map<String, String> requestMap, String token) {
+        try {
+            return userService.updateClientProfile(requestMap, token); // Delegate to the UserService
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return LegalUtils.getResponseEntity(LegalConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
 }

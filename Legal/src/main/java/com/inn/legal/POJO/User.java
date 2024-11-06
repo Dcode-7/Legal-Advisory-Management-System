@@ -31,9 +31,6 @@ public class User implements Serializable {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "relatedID")
-    private Integer relatedID;
-
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING) // Use Enum to represent roles
     private Role role;
@@ -46,5 +43,10 @@ public class User implements Serializable {
 
     @Column(name = "status")
     private String status;
+
+    // Establish a One-to-One relationship with Client
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "clientID", referencedColumnName = "clientID")
+    private Client client;  // This is the object representing the related Client
 
 }

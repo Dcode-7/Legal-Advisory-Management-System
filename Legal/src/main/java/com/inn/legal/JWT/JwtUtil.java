@@ -3,6 +3,7 @@ package com.inn.legal.JWT;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -11,13 +12,19 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+@Slf4j
 @Service
 public class JwtUtil {
 
     private String secret = "Legal@24-01DBMS";
 
-    public String extractUsername(String token){ //This method takes a JWT token and retrieves the username (the subject of the token).
-        return extractClaims(token,Claims::getSubject);
+    public String extractUsername(String token) {
+        if (token != null && token.startsWith("Bearer ")) {
+            token = token.substring(7); // Removes 'Bearer ' which is 7 characters long
+        }
+        String username = extractClaims(token, Claims::getSubject);
+        log.info("Extracted username from token: {}", username); // Add debug log
+        return username;
     }
 
     public Date extractExpiration(String token){ //It tells you when the token will no longer be valid.
