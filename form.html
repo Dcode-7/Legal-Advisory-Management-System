@@ -19,137 +19,131 @@
     <title>Details form</title>
   </head>
   <body>
-    <form class="needs-validation" novalidate>
+    <div class="form-box">
+      <form class="needs-validation" novalidate>
         <h3>Details Form</h3>
-      <div class="form-row">
-        <div class="col-md-4 mb-3">
-          <label for="validationCustom01">Full name</label>
-          <input
-            type="text"
-            class="form-control"
-            id="validationCustom01"
-            placeholder="Jane Doe"
-            required
-          />
-          <div class="valid-feedback">Looks good!</div>
-        </div>
-        <div class="col-md-4 mb-3">
-          <label for="validationCustom02">Client ID</label>
-          <input
-            type="text"
-            class="form-control"
-            id="validationCustom02"
-            placeholder="12345"
-            required
-          />
-          <div class="valid-feedback">Looks good!</div>
-        </div>
-        <div class="col-md-4 mb-3">
-          <label for="validationCustomUsername">Email</label>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroupPrepend">@</span>
-            </div>
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <label for="validationCustom01">Full name</label>
             <input
-              type="email"
+              type="text"
               class="form-control"
-              id="inputEmail3"
-              placeholder="abc@gmail.com"
-              aria-describedby="inputGroupPrepend"
+              id="validationCustom01"
+              placeholder="Jane Doe"
               required
             />
-            <div class="invalid-feedback">Please enter valid email</div>
+            <div class="valid-feedback">Looks good!</div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="validationCustomUsername">Email</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend">@</span>
+              </div>
+              <input
+                type="email"
+                class="form-control"
+                id="inputEmail3"
+                placeholder="abc@gmail.com"
+                aria-describedby="inputGroupPrepend"
+                required
+              />
+              <div class="invalid-feedback">Please enter valid email</div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="form-row">
-        <div class="col-md-6 mb-3">
-          <label for="validationCustom03">Address</label>
-          <input
-            type="text"
-            class="form-control"
-            id="validationCustom03"
-            placeholder="Address"
-            required
-          />
-          <div class="invalid-feedback">Please provide a valid city.</div>
-        </div>
-        <div class="col-md-3 mb-3">
-          <label for="validationCustom04">Contact no</label>
-          <input
-            type="text"
-            class="form-control"
-            id="validationCustom04"
-            placeholder="Contact No"
-            required
-          />
-          <div class="invalid-feedback">Please provide a valid state.</div>
-        </div>
-        <div class="col-md-3 mb-3">
-          <label for="validationCustom05">Occupation</label>
-          <input
-            type="text"
-            class="form-control"
-            id="validationCustom05"
-            placeholder="Occupation"
-            required
-          />
-          <div class="invalid-feedback">Please provide a valid occupation.</div>
-        </div>
-      </div>
-      <div class="form-row align-items-center">
-        <div class="col-auto my-1">
-          <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect"
-            >Preference</label
-          >
-          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-            <option selected>Choose...</option>
-            <option value="1">Criminal</option>
-            <option value="2">Corporate</option>
-            <option value="3">Civil</option>
-            <option value="4">Family</option>
-            <option value="5">Tax</option>
-          </select>
-        </div>
-        <div class="col-auto my-1">
-          <div class="custom-control custom-checkbox mr-sm-2">
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="validationCustom03">Address</label>
             <input
-              type="checkbox"
-              class="custom-control-input"
-              id="customControlAutosizing"
+              type="text"
+              class="form-control"
+              id="validationCustom03"
+              placeholder="Address"
+              required
             />
-            <label class="custom-control-label" for="customControlAutosizing"
-              >Remember my preference</label
+            <div class="invalid-feedback">Please provide a valid city.</div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="validationCustom04">Contact no</label>
+            <input
+              type="text"
+              class="form-control"
+              id="validationCustom04"
+              placeholder="Contact No"
+              required
+            />
+            <div class="invalid-feedback">Please provide a valid state.</div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="validationCustom05">Occupation</label>
+            <input
+              type="text"
+              class="form-control"
+              id="validationCustom05"
+              placeholder="Occupation"
+              required
+            />
+            <div class="invalid-feedback">
+              Please provide a valid occupation.
+            </div>
+          </div>
+        </div>
+        <div class="form-row align-items-center">
+          <div class="col-auto my-1">
+            <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect"
+              >Preference</label
             >
+            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+              <option selected>Choose...</option>
+              <option value="1">Criminal</option>
+              <option value="2">Corporate</option>
+              <option value="3">Civil</option>
+              <option value="4">Family</option>
+              <option value="5">Tax</option>
+            </select>
+          </div>
+          <div class="col-auto my-1">
+            <div class="custom-control custom-checkbox mr-sm-2">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="customControlAutosizing"
+              />
+              <label class="custom-control-label" for="customControlAutosizing"
+                >Remember my preference</label
+              >
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlFile1">Upload documents</label>
+            <input
+              type="file"
+              class="form-control-file"
+              id="exampleFormControlFile1"
+            />
           </div>
         </div>
         <div class="form-group">
-          <label for="exampleFormControlFile1">Upload documents</label>
-          <input
-            type="file"
-            class="form-control-file"
-            id="exampleFormControlFile1"
-          />
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="invalidCheck"
+              required
+            />
+            <label class="form-check-label" for="invalidCheck">
+              Agree to terms and conditions
+            </label>
+            <div class="invalid-feedback">
+              You must agree before submitting.
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id="invalidCheck"
-            required
-          />
-          <label class="form-check-label" for="invalidCheck">
-            Agree to terms and conditions
-          </label>
-          <div class="invalid-feedback">You must agree before submitting.</div>
-        </div>
-      </div>
-      <button class="btn btn-primary" type="submit">Submit form</button>
-    </form>
-
+        <button class="btn btn-primary" type="submit">Submit form</button>
+      </form>
+    </div>
     <script>
       // Example starter JavaScript for disabling form submissions if there are invalid fields
       (function () {
