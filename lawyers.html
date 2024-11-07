@@ -3,10 +3,7 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <!-- Bootstrap CSS -->
     <link
@@ -37,9 +34,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="index.html"
-              >Home <span class="sr-only">(current)</span></a
-            >
+            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="">About</a>
@@ -76,6 +71,7 @@
         </form>
       </div>
     </nav>
+
     <div class="box d-flex justify-content-center" style="min-height: 100vh">
       <div class="container">
         <h3>Lawyer Details</h3>
@@ -86,92 +82,56 @@
                 <tr>
                   <th scope="col">Filter</th>
                   <th scope="col">Lawyer ID</th>
-                  <th scope="col">Case ID</th>
                   <th scope="col">Name</th>
                   <th scope="col">Contact No</th>
                   <th scope="col">Specialization</th>
                   <th scope="col">Fees</th>
                   <th scope="col">Rating</th>
-                  <th scope="col">Status</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td><input type="checkbox" /></td>
-                  <th scope="row">1</th>
-                  <td>1435</td>
-                  <td>Mark</td>
-                  <td>9898998373</td>
-                  <td>Criminal</td>
-                  <td>50000</td>
-                  <td>8</td>
-                  <td>Open</td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" /></td>
-                  <th scope="row">2</th>
-                  <td>1135</td>
-                  <td>Jack</td>
-                  <td>9898968373</td>
-                  <td>Civil</td>
-                  <td>60000</td>
-                  <td>7</td>
-                  <td>Closed</td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" /></td>
-                  <th scope="row">3</th>
-                  <td>1235</td>
-                  <td>Alex</td>
-                  <td>9868998373</td>
-                  <td>Tax</td>
-                  <td>90000</td>
-                  <td>10</td>
-                  <td>Open</td>
-                </tr>
+              <tbody id="lawyersTableBody">
+                <!-- Data will be dynamically inserted here -->
               </tbody>
             </table>
           </div>
         </div>
+        
+        <!-- Section to select specialization and add case description -->
         <div class="row d-flex flex-column align-items-center">
           <div class="col-md-4 col-sm-6 mb-3">
             <div class="form-group">
-              <label class="mr-sm-2" for="inlineFormCustomSelect"
-                >Preference</label
-              >
+              <label class="mr-sm-2" for="inlineFormCustomSelect">Specialization</label>
               <select class="custom-select mr-sm-1" id="inlineFormCustomSelect">
                 <option selected>Choose...</option>
-                <option value="1">Criminal</option>
-                <option value="2">Corporate</option>
-                <option value="3">Civil</option>
-                <option value="4">Family</option>
-                <option value="5">Tax</option>
+                <option value="Criminal">Criminal</option>
+                <option value="Corporate">Corporate</option>
+                <option value="Civil">Civil</option>
+                <option value="Family">Family</option>
+                <option value="Tax">Tax</option>
               </select>
             </div>
           </div>
+    
+          <!-- Textarea for case description -->
           <div class="col-md-8 col-sm-12 mb-3">
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">Case description</span>
               </div>
-              <textarea
-                class="form-control"
-                aria-label="With textarea"
-              ></textarea>
+              <textarea class="form-control" aria-label="With textarea" id="caseDescription"></textarea>
             </div>
           </div>
+    
+          <!-- Submit button -->
           <div class="col-md-2 col-sm-6 mt-3">
-            <button
-              class="btn btn-outline-secondary btn-block"
-              type="button"
-              id="inputGroupFileAddon04"
-            >
+            <button class="btn btn-outline-secondary btn-block" type="button" id="submitCaseButton">
               Submit
             </button>
           </div>
         </div>
       </div>
     </div>
+    
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -190,5 +150,8 @@
       integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
       crossorigin="anonymous"
     ></script>
+
+    <!-- Custom JavaScript to handle the dynamic content and API calls -->
+    <script src="lawyers.js"></script>
   </body>
 </html>
