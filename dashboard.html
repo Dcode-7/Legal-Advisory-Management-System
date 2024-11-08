@@ -3,7 +3,10 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
     <!-- Bootstrap CSS (using CDN for better performance) -->
     <link
@@ -47,7 +50,9 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.html"
+              >Home <span class="sr-only">(current)</span></a
+            >
           </li>
           <li class="nav-item">
             <a class="nav-link" href="">About</a>
@@ -105,31 +110,95 @@
                   <strong>Client ID: </strong><span id="clientID">12345</span>
                 </li>
                 <li class="list-group-item">
-                  <strong>Email:</strong> <span id="clientEmail">johndoe@example.com</span>
+                  <strong>Email:</strong>
+                  <span id="clientEmail">johndoe@example.com</span>
                 </li>
                 <li class="list-group-item">
-                  <strong>Address:</strong> <span id="clientAddress">123 Main Street, Cityville, ST 12345</span>
+                  <strong>Address:</strong>
+                  <span id="clientAddress"
+                    >123 Main Street, Cityville, ST 12345</span
+                  >
                 </li>
                 <li class="list-group-item">
-                  <strong>Contact no:</strong> <span id="clientContactNo">(91+) 9984567890</span>
+                  <strong>Contact no:</strong>
+                  <span id="clientContactNo">(91+) 9984567890</span>
                 </li>
                 <li class="list-group-item">
-                  <strong>Occupation: </strong><span id="clientOccupation">Private sector</span>
+                  <strong>Occupation: </strong
+                  ><span id="clientOccupation">Private sector</span>
                 </li>
               </ul>
             </div>
             <div class="card-footer text-center">
               <!-- Button to edit profile -->
-              <button class="btn btn-primary" id="editProfileBtn">Edit Profile</button>
-              <button class="btn btn-danger" id="logoutBtn">Log Out</button>
+              <button class="btn btn-primary" id="editProfileBtn">
+                Edit Profile
+              </button>
+              <button class="btn btn-danger">Log Out</button>
             </div>
           </div>
         </div>
       </div>
     </div>
-
+    <div class="lawyer-table row justify-content-center">
+      <div class="col-12 col-md-8">
+        <table class="table table-hover table-dark">
+          <thead>
+            <tr>
+              <th scope="col">Filter</th>
+              <th scope="col">Lawyer ID</th>
+              <th scope="col">Case ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Contact No</th>
+              <th scope="col">Specialization</th>
+              <th scope="col">Fees</th>
+              <th scope="col">Rating</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="checkbox" /></td>
+              <th scope="row">1</th>
+              <td>1435</td>
+              <td>Mark</td>
+              <td>9898998373</td>
+              <td>Criminal</td>
+              <td>50000</td>
+              <td>8</td>
+              <td>Open</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" /></td>
+              <th scope="row">2</th>
+              <td>1135</td>
+              <td>Jack</td>
+              <td>9898968373</td>
+              <td>Civil</td>
+              <td>60000</td>
+              <td>7</td>
+              <td>Closed</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" /></td>
+              <th scope="row">3</th>
+              <td>1235</td>
+              <td>Alex</td>
+              <td>9868998373</td>
+              <td>Tax</td>
+              <td>90000</td>
+              <td>10</td>
+              <td>Open</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="delete d-flex justify-content-center">
+      <button type="button" class="btn btn-danger">Delete account</button>
+    </div>
     <!-- Optional JavaScript -->
-    <!-- Bootstrap JS (CDN) -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -145,8 +214,12 @@
       integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
       crossorigin="anonymous"
     ></script>
-
-    <!-- Dashboard JavaScript -->
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+    <script src="./js/jquery-3.5.1.js"></script>
+    <script src="./js/jquery.dataTables.min.js"></script>
+    <script src="./js/dataTables.bootstrap5.min.js"></script>
+    <script src="./js/script.js"></script>
     <script src="dashboard.js"></script>
   </body>
 </html>
