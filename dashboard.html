@@ -99,29 +99,29 @@
               </div>
 
               <!-- User Information -->
-              <h5 class="text-center mb-3">John Doe</h5>
+              <h5 class="text-center mb-3" id="clientName">John Doe</h5>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                  <strong>Client ID: </strong>12345
+                  <strong>Client ID: </strong><span id="clientID">12345</span>
                 </li>
                 <li class="list-group-item">
-                  <strong>Email:</strong> johndoe@example.com
+                  <strong>Email:</strong> <span id="clientEmail">johndoe@example.com</span>
                 </li>
                 <li class="list-group-item">
-                  <strong>Address:</strong> 123 Main Street, Cityville, ST 12345
+                  <strong>Address:</strong> <span id="clientAddress">123 Main Street, Cityville, ST 12345</span>
                 </li>
                 <li class="list-group-item">
-                  <strong>Contact no:</strong> (91+) 9984567890
+                  <strong>Contact no:</strong> <span id="clientContactNo">(91+) 9984567890</span>
                 </li>
                 <li class="list-group-item">
-                  <strong>Occupation: </strong>Private sector
+                  <strong>Occupation: </strong><span id="clientOccupation">Private sector</span>
                 </li>
               </ul>
             </div>
             <div class="card-footer text-center">
               <!-- Button to edit profile -->
               <button class="btn btn-primary" id="editProfileBtn">Edit Profile</button>
-              <button class="btn btn-danger">Log Out</button>
+              <button class="btn btn-danger" id="logoutBtn">Log Out</button>
             </div>
           </div>
         </div>
@@ -145,6 +145,8 @@
       integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
       crossorigin="anonymous"
     ></script>
+
+    <!-- Dashboard JavaScript -->
     <script src="dashboard.js"></script>
   </body>
 </html>

@@ -28,7 +28,7 @@ public class JwtFilter extends OncePerRequestFilter {
     private  String userName = null; // To store the username extracted from the JWT.
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException { //This method is overridden from OncePerRequestFilter, ensuring that the filter is applied only once per request.
-        if(httpServletRequest.getServletPath().matches("user/login|user/signup|user/forgotPassword")){ //If the request is for one of the public endpoints , it allows the request to proceed without further authentication checks using filterChain.doFilter(...).
+        if(httpServletRequest.getServletPath().matches("user/login|user/signup|user/search|user/update-profile|user/filterLawyersBySpecialization|user/raise-case")){ //If the request is for one of the public endpoints , it allows the request to proceed without further authentication checks using filterChain.doFilter(...).
             filterChain.doFilter(httpServletRequest,httpServletResponse);
         }else{
             String authorizationHeader = httpServletRequest.getHeader("Authorization");
