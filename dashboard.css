@@ -1,9 +1,16 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.user-details{
-    display: flex;
-    justify-content: space-between;
+.user-details {
+  display: flex;
+  justify-content: space-between;
+}
+.lawyer-table {
+  margin-top: 48px;
+}
+.delete {
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
