@@ -37,7 +37,7 @@ loginForm.addEventListener("submit", async (event) => {
       displayMessage("Login successful!", "success", "loginResponse");
 
       // Redirect to the details form page
-      window.location.href = "form.html"; // Redirect to the form page after successful login
+      window.location.href = "dashboard.html"; // Redirect to the dashboard page after successful login
     } else {
       // If the login fails, display an error message
       displayMessage("Invalid credentials or user role.", "error", "loginResponse");
