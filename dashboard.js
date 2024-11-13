@@ -1,25 +1,24 @@
-// dashboard.js
-
-// Wait for the document to load before attaching event listeners
 document.addEventListener("DOMContentLoaded", function () {
-    // Get the "Edit Profile" button by its ID
-    const editProfileButton = document.getElementById("editProfileBtn");
+    // Fetch and display lawyer data when the page loads
+    fetchCasesAndLawyers();
 
-    // Add event listener to the "Edit Profile" button
-    if (editProfileButton) {
-        editProfileButton.addEventListener("click", function () {
-            // Redirect to form.html when the button is clicked
-            window.location.href = "form.html";
+    // Add event listener to the delete button
+    const deleteButton = document.getElementById("deleteSelectedBtn");
+    if (deleteButton) {
+        deleteButton.addEventListener("click", function () {
+            const selectedCaseIDs = getSelectedCaseIDs();
+            if (selectedCaseIDs.length > 0) {
+                deleteCases(selectedCaseIDs);
+            } else {
+                alert("Please select at least one case to delete.");
+            }
         });
     }
-
-    // Call getUserProfile to load user data from the API after the page has loaded
-    getUserProfile();
 });
 
-// Function to fetch user profile data and update the UI
-async function getUserProfile() {
-    const token = sessionStorage.getItem("authToken"); // Retrieve the token from sessionStorage
+// Function to fetch and display cases and lawyers
+async function fetchCasesAndLawyers() {
+    const token = sessionStorage.getItem("authToken");
 
     if (!token) {
         console.log("No token found. Please log in.");
@@ -27,68 +26,136 @@ async function getUserProfile() {
     }
 
     try {
-        // Make the API call using the token in the Authorization header
-        const response = await fetch("http://localhost:8081/user/details", {
+        const response = await fetch("http://localhost:8081/user/caseD", {
             method: "GET",
             headers: {
-                "Authorization": `Bearer ${token}`, // Include the token in the Authorization header
+                "Authorization": `Bearer ${token}`,
                 "Content-Type": "application/json",
             },
         });
 
-        // Parse the response from the API
         if (response.ok) {
-            const userData = await response.json();
-            console.log("User profile:", userData);
-            // Update the profile UI with fetched data
-            updateProfileUI(userData);
+            const data = await response.json();
+            console.log("Fetched Cases and Lawyers:", data);
+            updateLawyersTable(data);
         } else {
-            console.log("User not found, displaying default values.");
-            // If the user is not found, display default profile information
-            displayDefaultProfile();
+            console.log("Error fetching data:", response.statusText);
         }
     } catch (error) {
-        console.error("Error fetching profile:", error);
-        // Handle error scenario, display default profile as a fallback
-        displayDefaultProfile();
+        console.error("Error fetching cases and lawyers:", error);
     }
 }
 
-// Function to update the profile UI with the fetched data
-function updateProfileUI(userData) {
-    // Assuming the response contains user details in a structure like:
-    // { clientID, name, email, address, contactNo, occupation }
-    const userProfileSection = document.querySelector(".card-body");
+// Function to update the lawyers table with the fetched data
+function updateLawyersTable(data) {
+    const tableBody = document.getElementById("lawyersTableBody");
+    tableBody.innerHTML = ""; // Clear existing table rows
 
-    if (userData) {
-        // Update the profile information dynamically with the data from the API
-        userProfileSection.querySelector("h5").innerText = userData.name || "John Doe"; // Name
-        userProfileSection.querySelector(".list-group-item:nth-child(1)").innerHTML = `<strong>Client ID:</strong> ${userData.clientID || "Not Available"}`;
-        userProfileSection.querySelector(".list-group-item:nth-child(2)").innerHTML = `<strong>Email:</strong> ${userData.email || "Not Available"}`;
-        userProfileSection.querySelector(".list-group-item:nth-child(3)").innerHTML = `<strong>Address:</strong> ${userData.address || "Not Available"}`;
-        userProfileSection.querySelector(".list-group-item:nth-child(4)").innerHTML = `<strong>Contact no:</strong> ${userData.contactNo || "Not Available"}`;
-        userProfileSection.querySelector(".list-group-item:nth-child(5)").innerHTML = `<strong>Occupation:</strong> ${userData.occupation || "Not Available"}`;
+    if (!data || data.length === 0) {
+        tableBody.innerHTML = "<tr><td colspan='9' class='text-center'>No data available</td></tr>";
+        return;
+    }
+
+    data.forEach(lawyer => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td><input type="checkbox" class="caseCheckbox" data-case-id="${lawyer.caseID}" /></td>
+            <th scope="row">${lawyer.lawyerID}</th>
+            <td>${lawyer.caseID}</td>
+            <td>${lawyer.lawyerName}</td>
+            <td>${lawyer.lawyerFees}</td>
+            <td>${lawyer.lawyerSpecialization}</td>
+            <td>${lawyer.lawyerFees}</td>
+            <td>${lawyer.lawyerRating}</td>
+            <td>${lawyer.status}</td>
+        `;
+
+        tableBody.appendChild(row);
+    });
+}
+
+// Function to get the selected case IDs from the checkboxes
+function getSelectedCaseIDs() {
+    const selectedCheckboxes = document.querySelectorAll(".caseCheckbox:checked");
+    const selectedCaseIDs = [];
+
+    selectedCheckboxes.forEach(checkbox => {
+        const caseID = checkbox.getAttribute("data-case-id");
+        selectedCaseIDs.push(parseInt(caseID, 10));
+    });
+
+    return selectedCaseIDs;
+}
+
+// Function to send DELETE request to the backend with selected case IDs
+async function deleteCases(caseIDs) {
+    const token = sessionStorage.getItem("authToken");
+
+    if (!token) {
+        console.log("No token found. Please log in.");
+        return;
+    }
+
+    try {
+        const response = await fetch("http://localhost:8081/user/Deletecases", {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(caseIDs),
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            console.log("Delete Response:", result);
+            // Display success message and update the table
+            alert("Cases deleted successfully!");
+            removeDeletedRows(caseIDs);
+            fetchCasesAndLawyers();
+            location.reload();
+        } else {
+            const error = await response.json();
+            console.log("Delete Error:", error);
+            alert("Error deleting cases: " + error.message);
+        }
+    } catch (error) {
+        console.error("Error deleting cases:", error);
+        alert("An error occurred while deleting cases.");
     }
 }
 
-// Function to display default profile when user is not found or error occurs
-function displayDefaultProfile() {
-    const userProfileSection = document.querySelector(".card-body");
+// Function to remove the deleted rows from the table
+function removeDeletedRows(caseIDs) {
+    const tableBody = document.getElementById("lawyersTableBody");
+    const rows = tableBody.getElementsByTagName("tr");
 
-    // Displaying default values in case the user is not found
-    userProfileSection.querySelector("h5").innerText = "John Doe"; // Default Name
-    userProfileSection.querySelector(".list-group-item:nth-child(1)").innerHTML = "<strong>Client ID:</strong> Not Available";
-    userProfileSection.querySelector(".list-group-item:nth-child(2)").innerHTML = "<strong>Email:</strong> Not Available";
-    userProfileSection.querySelector(".list-group-item:nth-child(3)").innerHTML = "<strong>Address:</strong> Not Available";
-    userProfileSection.querySelector(".list-group-item:nth-child(4)").innerHTML = "<strong>Contact no:</strong> Not Available";
-    userProfileSection.querySelector(".list-group-item:nth-child(5)").innerHTML = "<strong>Occupation:</strong> Not Available";
+    Array.from(rows).forEach(row => {
+        const caseIDCell = row.getElementsByTagName("td")[2]; // Case ID is in the 3rd column
+        if (caseIDCell) {
+            const caseID = parseInt(caseIDCell.textContent, 10);
+            if (caseIDs.includes(caseID)) {
+                tableBody.removeChild(row); // Remove the row from the table
+            }
+        }
+    });
 }
 
-document.getElementById('logoutBtn').addEventListener('click', function() {
-    // Clear session storage or any other authentication data if necessary
-    // sessionStorage.clear();  // Uncomment this line if you're using session storage for authentication
-    
-    // Redirect to index.html after logout
-    window.location.href = 'index.html'; // or 'index.html' depending on your file structure
-  });
-  
+document.addEventListener("DOMContentLoaded", function () {
+    // Add event listener to the logout button
+    const logoutButton = document.getElementById("logoutBtn");
+    if (logoutButton) {
+        logoutButton.addEventListener("click", function () {
+            // Clear the session storage to remove the auth token
+            sessionStorage.removeItem("authToken");
+            
+            // Optionally, clear other session-related data if needed
+            // sessionStorage.clear(); // Uncomment to clear all session storage
+
+            // Redirect to the home page
+            window.location.href = "index.html";  // Change this URL to your home page URL
+        });
+    }
+});
+
