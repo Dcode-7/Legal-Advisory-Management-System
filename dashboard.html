@@ -134,7 +134,7 @@
               <button class="btn btn-primary" id="editProfileBtn">
                 Edit Profile
               </button>
-              <button class="btn btn-danger">Log Out</button>
+              <button class="btn btn-danger" id="logoutBtn">Log Out</button>            
             </div>
           </div>
         </div>
@@ -156,46 +156,14 @@
               <th scope="col">Status</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td><input type="checkbox" /></td>
-              <th scope="row">1</th>
-              <td>1435</td>
-              <td>Mark</td>
-              <td>9898998373</td>
-              <td>Criminal</td>
-              <td>50000</td>
-              <td>8</td>
-              <td>Open</td>
-            </tr>
-            <tr>
-              <td><input type="checkbox" /></td>
-              <th scope="row">2</th>
-              <td>1135</td>
-              <td>Jack</td>
-              <td>9898968373</td>
-              <td>Civil</td>
-              <td>60000</td>
-              <td>7</td>
-              <td>Closed</td>
-            </tr>
-            <tr>
-              <td><input type="checkbox" /></td>
-              <th scope="row">3</th>
-              <td>1235</td>
-              <td>Alex</td>
-              <td>9868998373</td>
-              <td>Tax</td>
-              <td>90000</td>
-              <td>10</td>
-              <td>Open</td>
-            </tr>
+          <tbody id="lawyersTableBody">
+            <!-- Dynamic rows will be inserted here -->
           </tbody>
         </table>
       </div>
-    </div>
+    </div>    
     <div class="delete d-flex justify-content-center">
-      <button type="button" class="btn btn-danger">Delete account</button>
+      <button type="button" id="deleteSelectedBtn" class="btn btn-danger">Delete Selected Cases</button>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
